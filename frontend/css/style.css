@@ -1,0 +1,9 @@
+body{
+    font-family: 'Creepster', cursive;
+    background-color: black;
+}
+.jumbotron{
+    background-position: 50px;
+    background-size: cover;
+    background-image: url(../img/oursJumbotron.jpg);
+}
