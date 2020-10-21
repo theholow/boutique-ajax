@@ -75,3 +75,16 @@ h1{
 .fa-shopping-cart{
     color: darkred;
 }
+
+th {
+    color: darkred;
+}
+
+td{
+    color: white;
+}
+
+.table-container{
+    display: flex;
+    justify-content: flex-end;
+}
