@@ -52,11 +52,13 @@ let ids = search_params.get('id');
 const oneData = () => {
     axios.get('http://localhost:3000/api/teddies/' + ids)
         .then(response => {
+            console.log(response.data)
             let idBear = response.data._id
             let nameBear = response.data.name
             let imgBear = response.data.imageUrl
             let priceBear = response.data.price
             let descritptionBear = response.data.description
+            let colors = response.data.colors
             console.log(idBear, nameBear, imgBear, priceBear, descritptionBear)
             document.querySelector('#title').innerHTML = nameBear
             document.querySelector('.img-fluid').src = imgBear
