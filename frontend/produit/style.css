@@ -1,0 +1,77 @@
+body{
+    font-family: 'Creepster', cursive;
+    background-color: black;
+    color: darkred;
+}
+.jumbotron{
+    background-position: 50px;
+    background-size: cover;
+    background-image: url(../img/oursJumbotron.jpg);
+}
+h1{
+    color: rgb(59, 5, 5) !important;
+    box-shadow: 0 0 2rem rgba(20, 20, 20, 0.671) ;
+
+}
+
+#icon-container {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.container{
+    position: static;
+}
+.article-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+}
+.article{
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+}
+
+.product-name, .product-price , .product-quantity{
+    margin-top: 100px;
+}
+
+.product-image{
+    width: 20%;
+    height: 100%;
+}
+
+
+
+.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top{
+    position: static;
+}
+
+.buy.container-fluid{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.commande-link{
+    color: darkred;
+    font-size: x-large;
+
+}
+.commande-link:link{
+    color: darkred;
+}
+
+.commande-link:hover{
+    color: darkred;
+}
+
+.buy> .btn-warning{
+    width: 200px;
+}
+
+.fa-shopping-cart{
+    color: darkred;
+}

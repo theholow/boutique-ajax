@@ -13,3 +13,13 @@ h1{
     box-shadow: 0 0 2rem rgba(20, 20, 20, 0.671) ;
 
 }
+
+#icon-container {
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+{
+    color: darkred;
+}
