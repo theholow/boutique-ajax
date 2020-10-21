@@ -4,10 +4,16 @@ const getData = () => {
             createDisplay(response.data)
         })
 }
+<<<<<<< HEAD
 
 
 getData();
 
+=======
+getData();
+
+
+>>>>>>> features/home
 function createDisplay(array) {
     for (let product of array) {
         let id = product._id
@@ -20,6 +26,10 @@ function createDisplay(array) {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> features/home
 function createCard(id, name, description, price, img) {
     return '<div class="col-md-4 mb-5">' +
         '<div class="card h-100">' +
@@ -47,28 +57,27 @@ let search_params = new URLSearchParams(url.search);
 let ids = search_params.get('id');
 
 
-
 const oneData = () => {
     axios.get('http://localhost:3000/api/teddies/' + ids)
-    .then(response => {
-        let idBear = response.data._id
-        let nameBear = response.data.name
-        let imgBear = response.data.imageUrl
-        let priceBear = response.data.price
-        let descritptionBear = response.data.description
-      console.log(idBear,nameBear,imgBear,priceBear,descritptionBear)
-      document.querySelector('#title').innerHTML = nameBear
-      document.querySelector('.img-fluid').src=imgBear
-      document.querySelector('#price').innerHTML = priceBear
-      document.querySelector('#description').innerHTML = descritptionBear
-         })
+        .then(response => {
+            console.log(response.data)
+            let idBear = response.data._id
+            let nameBear = response.data.name
+            let imgBear = response.data.imageUrl
+            let priceBear = response.data.price
+            let descritptionBear = response.data.description
+            let colors = response.data.colors
+            console.log(idBear, nameBear, imgBear, priceBear, descritptionBear)
+            document.querySelector('#title').innerHTML = nameBear
+            document.querySelector('.img-fluid').src = imgBear
+            document.querySelector('#price').innerHTML = priceBear
+            document.querySelector('#description').innerHTML = descritptionBear
+        })
 }
-
-
 
 oneData();
 
- 
+
 
 
 
