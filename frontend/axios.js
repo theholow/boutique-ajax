@@ -4,16 +4,9 @@ const getData = () => {
             createDisplay(response.data)
         })
 }
-<<<<<<< HEAD
-
-
-getData();
-
-=======
 getData();
 
 
->>>>>>> features/home
 function createDisplay(array) {
     for (let product of array) {
         let id = product._id
@@ -26,10 +19,7 @@ function createDisplay(array) {
     }
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> features/home
 function createCard(id, name, description, price, img) {
     return '<div class="col-md-4 mb-5">' +
         '<div class="card h-100">' +
@@ -60,22 +50,59 @@ let ids = search_params.get('id');
 const oneData = () => {
     axios.get('http://localhost:3000/api/teddies/' + ids)
         .then(response => {
-            console.log(response.data)
             let idBear = response.data._id
             let nameBear = response.data.name
             let imgBear = response.data.imageUrl
             let priceBear = response.data.price
             let descritptionBear = response.data.description
             let colors = response.data.colors
-            console.log(idBear, nameBear, imgBear, priceBear, descritptionBear)
+
             document.querySelector('#title').innerHTML = nameBear
             document.querySelector('.img-fluid').src = imgBear
             document.querySelector('#price').innerHTML = priceBear
             document.querySelector('#description').innerHTML = descritptionBear
+            createOptions(colors)
+
+
+            function onClick() {
+                let commande = new Object
+                commande.id = idBear
+                commande.color = optionColor.options[optionColor.selectedIndex].value;
+                console.log(commande)
+            }
+
+
+            /*
+            var selectElmt = document.getElementById("ComboPays");
+            var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
+            var textselectionne = selectElmt.options[selectElmt.selectedIndex].text;
+            */
+
+            let button = document.querySelector('.btn')
+            button.addEventListener('click', onClick)
+            let optionColor = document.getElementById('option')
+
         })
 }
-
 oneData();
+
+
+
+
+
+
+function createOptions(array) {
+    for (const colors of array) {
+        document.querySelector('#option').innerHTML += '<option value="' + colors + '">' + colors + "</option>"
+
+    }
+
+}
+
+
+
+
+
 
 
 
