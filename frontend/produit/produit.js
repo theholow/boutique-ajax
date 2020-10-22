@@ -1,4 +1,5 @@
-let panier = []
+let panier = dataPanier()
+//localStorage.clear()
 let urlcourante = document.location.href;
 let url = new URL(urlcourante);
 let search_params = new URLSearchParams(url.search);
@@ -25,16 +26,13 @@ const oneData = () => {
                 let commande = new Object
                 commande.id = idBear
                 commande.color = optionColor.options[optionColor.selectedIndex].value;
-                commande.quantite = quantity.options[quantity.selectedIndex].value
-                checkPanier(commande, panier)
-
-
-            }
-            /*function.js purchase*/
-            function purchase(objet){
-                localStorage.setItem(1, JSON.stringify(objet))
+                commande.quantite = parseInt(quantity.options[quantity.selectedIndex].value)
+               
+              checkPanier(commande, panier)
+                 purchase(commande)
 
             }
+
 
             /*Reste dans OneData*/
             let button = document.querySelector('.btn')
@@ -53,20 +51,30 @@ function createOptions(array) {
 
 }
 
+
+function dataPanier () {
+    if(localStorage.getItem("panier") === null){
+return []
+    }
+    return JSON.parse(localStorage.getItem("panier"))
+}
+
+
 function checkPanier(produit, panier) {
     let found = false;
     for (const currentProduct of panier) {
         //Vérifier si l'id existe
         if (produit.id === currentProduct.id && produit.color === currentProduct.color) {
-            currentProduct.quantite++;
-            found = true;
+            currentProduct.quantite += produit.quantite
+           found = true;
             break;
         }
     }
     if (found === false){
-        panier.push(produit);
+        panier.push(produit);    
     }
-    
+
+    purchase(panier)
     console.log(panier)
 }
 
