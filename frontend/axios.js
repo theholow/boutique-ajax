@@ -1,3 +1,4 @@
+
 const getData = () => {
     axios('http://localhost:3000/api/teddies')
         .then(response => {
@@ -70,13 +71,20 @@ const oneData = () => {
                 commande.color = optionColor.options[optionColor.selectedIndex].value;
                 commande.quantite = quantity.options[quantity.selectedIndex].value
                 purchase(commande)
-                
+
+            }
+            let panier = []
+            function purchase(objet) {
+                panier.push(objet)
+                localStorage.setItem("panier", JSON.stringify(panier))
+                console.log(panier)
+                localStorage.getItem(JSON.parse(objet))
+                console.log(localStorage.getItem(objet.id))
+if(objet.id == localStorage.getItem(JSON.parse(objet.id))) {
+
+}
             }
 
-            function purchase(objet){
-                localStorage.setItem(1, JSON.stringify(objet))
-                
-            }
 
             let button = document.querySelector('.btn')
             button.addEventListener('click', onClick)
