@@ -68,22 +68,24 @@ const oneData = () => {
                 let commande = new Object
                 commande.id = idBear
                 commande.color = optionColor.options[optionColor.selectedIndex].value;
-                console.log(commande)
+                commande.quantite = quantity.options[quantity.selectedIndex].value
+                purchase(commande)
+                
             }
 
-
-            /*
-            var selectElmt = document.getElementById("ComboPays");
-            var valeurselectionnee = selectElmt.options[selectElmt.selectedIndex].value;
-            var textselectionne = selectElmt.options[selectElmt.selectedIndex].text;
-            */
+            function purchase(objet){
+                localStorage.setItem(1, JSON.stringify(objet))
+                
+            }
 
             let button = document.querySelector('.btn')
             button.addEventListener('click', onClick)
             let optionColor = document.getElementById('option')
+            let quantity = document.getElementById('quantité')
 
         })
 }
+
 oneData();
 
 
