@@ -32,5 +32,6 @@ function displayCommande(img, name,color, quantite, price) {
         '<h5 class="product-color">"' + color + '"</h5>'+
         '<h4 class="product-price">"' + quantite + '"</h4>' +
         '<h5 class="product-quantity">"' + price + '"</h5>'+
+        '<button type="button" data-id class="btn btn-danger">Supprimer</button>' +
         '</div>'
 }

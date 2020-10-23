@@ -34,7 +34,7 @@ h1{
     flex-direction: row;
 }
 
-.product-name, .product-price , .product-quantity, .product-color{
+.product-name, .product-price , .product-quantity, .product-color, .btn-danger{
     margin-top: 100px;
 }
 
@@ -88,4 +88,9 @@ td{
 .table-container{
     display: flex;
     justify-content: flex-end;
+}
+
+.btn-danger{
+    width: 90px;
+    height: 50px;
 }
