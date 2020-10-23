@@ -1,9 +1,15 @@
+
+/*------HOME------*/
+
+
+/*Apel API*/
 function getData(){
     axios('http://localhost:3000/api/teddies')
         .then(response => {
             createDisplay(response.data);
         })
 }
+/*Recuperation des information*/
 function createDisplay(array) {
     for (let product of array) {
         let id = product._id
@@ -15,7 +21,7 @@ function createDisplay(array) {
 
     }
 }
-
+/*Affichage dans le HTML de tout les produit */
 function createCard(id, name, description, price, img) {
     return '<div class="col-md-4 mb-5">' +
         '<div class="card h-100">' +
@@ -35,7 +41,7 @@ function createCard(id, name, description, price, img) {
         '</div>'
 }
 
-/*home*/
+
 
 
 getData();

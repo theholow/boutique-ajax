@@ -1,11 +1,19 @@
+/*------PRODUIT------*/
+
+
 let panier = dataPanier()
 //localStorage.clear()
+
+/*Recuperation de l'id dans l'URL*/
 let urlcourante = document.location.href;
 let url = new URL(urlcourante);
 let search_params = new URLSearchParams(url.search);
 let ids = search_params.get('id');
 
+/*Affichage du produit dans la page produit*/
 const oneData = () => {
+
+    /*Récupérer les information de l'API avec l'ID du produit*/
     axios.get('http://localhost:3000/api/teddies/' + ids)
         .then(response => {
             let idBear = response.data._id
@@ -21,7 +29,7 @@ const oneData = () => {
             document.querySelector('#description').innerHTML = descritptionBear
             createOptions(colors)
 
-            /*reste dans le onedate*/
+            /*Crée objet */
             function onClick() {
                 let commande = new Object
                 commande.id = idBear
@@ -29,12 +37,11 @@ const oneData = () => {
                 commande.quantite = parseInt(quantity.options[quantity.selectedIndex].value)
                
               checkPanier(commande, panier)
-                 purchase(panier)
+            
 
             }
 
-
-            /*Reste dans OneData*/
+            /*Recupere la couleur*/
             let button = document.querySelector('.btn')
             button.addEventListener('click', onClick)
             let optionColor = document.getElementById('option')
@@ -44,14 +51,14 @@ const oneData = () => {
 }
 oneData();
 
-
+/*Implentation des couleurs de la base de donné dans le Select de la Page*/
 function createOptions(array) {
     for (const colors of array) {
         document.querySelector('#option').innerHTML += '<option value="' + colors + '">' + colors + "</option>"
     }
 }
 
-
+/*Création local Storage*/
 function dataPanier () {
     let save = [JSON.parse(localStorage.getItem("panier"))]
     if(localStorage.getItem("panier") === null){
@@ -62,7 +69,7 @@ return []
 }
 }
 
-
+/*Vérifie et sauvegarder dans le local storage*/
 function checkPanier(produit, panier) {
     let found = false;
     for (const currentProduct of panier) {
@@ -78,11 +85,11 @@ function checkPanier(produit, panier) {
     }
 
     purchase(panier)
-    console.log(panier)
+    
 }
 
 
-
+/*Sauvegarde dans le localstorage*/
 function purchase(objet) {
     localStorage.setItem("panier", JSON.stringify(objet))
 }
