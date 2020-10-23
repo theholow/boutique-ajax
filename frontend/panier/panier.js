@@ -1,11 +1,15 @@
+/*-----PANIER----*/
+
+/*Recuperation des données du localStorage*/
 let panier = localStorage.getItem("panier")
 let panierParsed = JSON.parse(panier)
 
+/*Affichage des produits dans le panier*/
 for (const produit of panierParsed) {
     getDataForBasketDisplay(produit.id, produit.quantite, produit.color)
 }
 
-
+/* Recuperation des données de l'API*/
 function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
     axios.get('http://localhost:3000/api/teddies/' + idProduct)
         .then(response => {
@@ -20,11 +24,7 @@ function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
         })
 }
 
-
-
-
-
-
+/*Affichage de chaque produit*/
 function displayCommande(img, name,color, quantite, price) {
     return '<div class="article container-fluid">' +
         '<img class="product-image" src="' + img + '">' +
