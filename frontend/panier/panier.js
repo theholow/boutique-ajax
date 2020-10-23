@@ -22,12 +22,14 @@ function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
             let colors = response.data.color
 
             document.querySelector('.article-container').innerHTML += displayCommande(idProduct, imgBear, nameBear, couleur, quantiteBear, priceBear)
-            let deleteButton = document.querySelector('.btn')
+            let deleteButton = document.querySelectorAll('.btn')
+            for (const btn of deleteButton) {
+                btn.addEventListener('click', function () {
+                    console.log('coucou')
+                    removeFromBasket(this.dataset.id, panierParsed)
+                })
+            }
 
-            deleteButton.addEventListener('click', function () {
-                console.log('coucou')
-                removeFromBasket(this.dataset.id, panierParsed)
-            })
 
         })
 }
@@ -40,7 +42,7 @@ function displayCommande(id, img, name, color, quantite, price) {
         '<h5 class="product-color">"' + color + '"</h5>' +
         '<h4 class="product-price">"' + quantite + '"</h4>' +
         '<h5 class="product-quantity">"' + price + '"</h5>' +
-        `<button class="btn btn-danger" data-id="${id + string_to_slug(color)}">Supprimer</button>` +
+        `<button class="btn btn-danger" data-id="${id +color}">Supprimer</button>` +
         '</div>'
 
 
@@ -48,7 +50,7 @@ function displayCommande(id, img, name, color, quantite, price) {
 }
 
 
-function string_to_slug (str) {
+/*function string_to_slug (str) {
     str = str.replace(/^\s+|\s+$/g, ''); // trim
     str = str.toLowerCase();
 
@@ -64,21 +66,29 @@ function string_to_slug (str) {
         .replace(/-+/g, '-'); // collapse dashes
 
     return str;
-}
+}*/
 
 
 
 //Enlève le produit du panier (bêta)
 function removeFromBasket(dataId, panier) {
-    let id = dataId.substr(0, 23)
+    console.log(panier)
+    let id = dataId.substr(0, 24)
     let color = dataId.substr(24)
 
     for (let i = 0; i < panier.length; i++) {
-        if (dataId === i.id && dataId === i.color) {
-            panier.splice[i, 1];
+        //console.log(id,panier[i].id,color,panier[i].color)
+        if (id === panier[i].id && color === panier[i].color) {
+            panier.splice(i,1)
             purchase(panier)
-            break;
         }
+
     }
 
+    console.log(panier)
+
+}
+
+function purchase(objet) {
+    localStorage.setItem("panier", JSON.stringify(objet))
 }
