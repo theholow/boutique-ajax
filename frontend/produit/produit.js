@@ -1,3 +1,5 @@
+
+
 let panier = dataPanier()
 //localStorage.clear()
 let urlcourante = document.location.href;
@@ -53,7 +55,7 @@ function createOptions(array) {
 
 
 function dataPanier () {
-    let save = [JSON.parse(localStorage.getItem("panier"))]
+    let save = JSON.parse(localStorage.getItem("panier"))
     if(localStorage.getItem("panier") === null){
 return []
     }
