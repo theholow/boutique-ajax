@@ -16,30 +16,20 @@ function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
             let descritptionBear = response.data.description
             let colors = response.data.color
 
-            document.querySelector('.article-container').innerHTML += displayCommande(imgBear,nameBear,quantiteBear,priceBear)
+            document.querySelector('.article-container').innerHTML += displayCommande(imgBear,nameBear,couleur,quantiteBear,priceBear)
         })
 }
 
 
 
-/*
-function returnDataCommande(panier) {
-
-    for (const produit of JSON.parse(panier)) {
-        let commandeID = produit.id
-        let commandeColors = produit.color
-        let quantiteBear = produit.quantite
-
-        return [commandeID, commandeColors, quantiteBear]
-    }
-
-}*/
 
 
-function displayCommande(img, name, quantite, price) {
+
+function displayCommande(img, name,color, quantite, price) {
     return '<div class="article container-fluid">' +
         '<img class="product-image" src="' + img + '">' +
         '<h3 class="product-name">"' + name + '"</h3>' +
+        '<h5 class="product-color">"' + color + '"</h5>'+
         '<h4 class="product-price">"' + quantite + '"</h4>' +
         '<h5 class="product-quantity">"' + price + '"</h5>'+
         '</div>'
