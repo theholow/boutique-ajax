@@ -29,7 +29,7 @@ const oneData = () => {
                 commande.quantite = parseInt(quantity.options[quantity.selectedIndex].value)
                
               checkPanier(commande, panier)
-                 purchase(commande)
+                 purchase(panier)
 
             }
 
@@ -43,20 +43,23 @@ const oneData = () => {
         })
 }
 oneData();
+
+
 function createOptions(array) {
     for (const colors of array) {
         document.querySelector('#option').innerHTML += '<option value="' + colors + '">' + colors + "</option>"
-
     }
-
 }
 
 
 function dataPanier () {
+    let save = [JSON.parse(localStorage.getItem("panier"))]
     if(localStorage.getItem("panier") === null){
 return []
     }
-    return JSON.parse(localStorage.getItem("panier"))
+    for(const session of save){
+    return save
+}
 }
 
 
