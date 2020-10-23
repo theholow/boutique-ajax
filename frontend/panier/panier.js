@@ -20,18 +20,26 @@ function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
             let descritptionBear = response.data.description
             let colors = response.data.color
 
-            document.querySelector('.article-container').innerHTML += displayCommande(imgBear,nameBear,couleur,quantiteBear,priceBear)
+            document.querySelector('.article-container').innerHTML += displayCommande(idProduct,imgBear,nameBear,couleur,quantiteBear,priceBear)
         })
 }
 
 /*Affichage de chaque produit*/
-function displayCommande(img, name,color, quantite, price) {
+function displayCommande(id,img, name,color, quantite, price) {
     return '<div class="article container-fluid">' +
         '<img class="product-image" src="' + img + '">' +
         '<h3 class="product-name">"' + name + '"</h3>' +
         '<h5 class="product-color">"' + color + '"</h5>'+
         '<h4 class="product-price">"' + quantite + '"</h4>' +
         '<h5 class="product-quantity">"' + price + '"</h5>'+
-        '<button type="button" data-id class="btn btn-danger">Supprimer</button>' +
+        `<button class="btn btn-danger" data-id="${id+color}">Supprimer</button>`+
         '</div>'
+}
+
+let deleteButton = document.querySelector('.btn-danger')
+
+deleteButton.addEventListener('click', removeFromBasket)
+
+function removeFromBasket(panier){
+
 }
