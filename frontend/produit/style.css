@@ -25,7 +25,7 @@ h1{
 }
 .article-container{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     margin-top: 50px;
 }
 .article{
@@ -34,7 +34,7 @@ h1{
     flex-direction: row;
 }
 
-.product-name, .product-price , .product-quantity{
+.product-name, .product-price , .product-quantity, .product-color{
     margin-top: 100px;
 }
 
@@ -42,6 +42,7 @@ h1{
     width: 20%;
     height: 100%;
 }
+
 
 
 

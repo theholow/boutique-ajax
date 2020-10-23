@@ -60,7 +60,7 @@ function createOptions(array) {
 
 /*Création local Storage*/
 function dataPanier () {
-    let save = [JSON.parse(localStorage.getItem("panier"))]
+    let save = JSON.parse(localStorage.getItem("panier"))
     if(localStorage.getItem("panier") === null){
 return []
     }
