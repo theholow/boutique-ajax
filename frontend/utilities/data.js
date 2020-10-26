@@ -27,7 +27,6 @@ export const oneData = (ids, panier) => {
 
                 checkPanier(commande, panier)
 
-
             }
 
             /*Recupere la couleur*/
@@ -35,6 +34,51 @@ export const oneData = (ids, panier) => {
             button.addEventListener('click', onClick)
             let optionColor = document.getElementById('option')
             let quantity = document.getElementById('quantité')
+
+        })
+}
+
+/*Apel API*/
+export function getData() {
+    axios('http://localhost:3000/api/teddies')
+        .then(response => {
+            display.createDisplay(response.data);
+        })
+}
+
+/* Vérification de la commande*/
+export function getCheckCommande(id, colors, quantite) {
+    axios.get('http://localhost:3000/api/teddies/' + id)
+        .then(response => {
+            let nameBear = response.data.name
+            let priceBear = response.data.price
+
+            let truePrice = priceBear / 100
+            console.log(truePrice)
+
+            document.querySelector('.table').innerHTML += display.displayCommande(nameBear, colors, quantite, truePrice)
+
+        })
+}
+
+/* Recuperation des données de l'API*/
+export function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
+    axios.get('http://localhost:3000/api/teddies/' + idProduct)
+        .then(response => {
+            let nameBear = response.data.name
+            let imgBear = response.data.imageUrl
+            let priceBear = Number(response.data.price)
+
+
+            document.querySelector('.article-container').innerHTML += display.displayCommandeInBasket(idProduct, imgBear, nameBear, couleur, quantiteBear, priceBear)
+            let deleteButton = document.querySelectorAll('.btn')
+            for (const btn of deleteButton) {
+                btn.addEventListener('click', function () {
+                    console.log('coucou')
+                    removeFromBasket(this.dataset.id, panierParsed)
+                })
+            }
+
 
         })
 }
@@ -50,7 +94,7 @@ function checkPanier(produit, panier) {
             break;
         }
     }
-    if (found === false){
+    if (found === false) {
         panier.push(produit);
     }
 
@@ -62,3 +106,29 @@ function checkPanier(produit, panier) {
 function purchase(objet) {
     localStorage.setItem("panier", JSON.stringify(objet))
 }
+
+
+
+
+//Enlève le produit du panier (bêta)
+function removeFromBasket(dataId, panier) {
+    console.log(panier)
+    let id = dataId.substr(0, 24)
+    let color = dataId.substr(24)
+
+    for (let i = 0; i < panier.length; i++) {
+        //console.log(id,panier[i].id,color,panier[i].color)
+        if (id === panier[i].id && color === panier[i].color) {
+            panier.splice(i, 1)
+            purchase(panier)
+
+        }
+        if (panier[0] == null) {
+            localStorage.clear()
+        }
+    }
+
+    console.log(panier)
+
+}
+
