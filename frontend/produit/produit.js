@@ -1,7 +1,7 @@
 /*------PRODUIT------*/
 
-
 let panier = dataPanier()
+
 //localStorage.clear()
 
 /*Recuperation de l'id dans l'URL*/
