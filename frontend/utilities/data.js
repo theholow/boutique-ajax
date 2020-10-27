@@ -47,22 +47,32 @@ export function getData() {
 }
 
 /* Vérification de la commande*/
-export function getCheckCommande(id, colors, quantite) {
+export function getCheckCommande(id, colors, quantite, tabHT, totoHT) {
+
     axios.get('http://localhost:3000/api/teddies/' + id)
         .then(response => {
             let nameBear = response.data.name
             let priceBear = response.data.price
-
             let truePrice = priceBear / 100
-            console.log(truePrice)
+            let sousTotal = truePrice * quantite
 
-            document.querySelector('.table').innerHTML += display.displayCommande(nameBear, colors, quantite, truePrice)
+            tabHT.push(sousTotal)
 
+            const reducer = (accumulator, currentValue) => accumulator + currentValue;
+            let HT = tabHT.reduce(reducer)
+
+            totoHT.push(HT)
+      
+console.log(totoHT)
+
+            document.querySelector('.HT').innerHTML += totoHT.pop()
+            document.querySelector('.table').innerHTML += display.displayCommande(nameBear, colors, quantite, truePrice, sousTotal)
         })
+
 }
 
 /* Recuperation des données de l'API*/
-export function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
+export function getDataForBasketDisplay(idProduct, quantiteBear, couleur, panierParsed) {
     axios.get('http://localhost:3000/api/teddies/' + idProduct)
         .then(response => {
             let nameBear = response.data.name
@@ -78,8 +88,6 @@ export function getDataForBasketDisplay(idProduct, quantiteBear, couleur) {
                     removeFromBasket(this.dataset.id, panierParsed)
                 })
             }
-
-
         })
 }
 

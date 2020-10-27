@@ -7,18 +7,18 @@ export function createOptions(array) {
 
 
 /*Création local Storage*/
-export function dataPanier () {
+export function dataPanier() {
     let save = JSON.parse(localStorage.getItem("panier"))
-    if(localStorage.getItem("panier") === null){
+    if (localStorage.getItem("panier") === null) {
         return []
     }
-    for(const session of save){
+    for (const session of save) {
         return save
     }
 }
 
 
-export function displayCommande(name, color, quantite, price) {
+export function displayCommande(name, color, quantite, price, sousTotal) {
 
     return '<tr class="product-display">'
         + '<th scope="row">1</th>' +
@@ -26,6 +26,7 @@ export function displayCommande(name, color, quantite, price) {
         '<td>"' + color + '"</td>' +
         '<td>"' + quantite + '"</td>' +
         '<td>"' + price + '"</td>' +
+        '<td>"' + sousTotal + '"</td>' +
         '</tr>'
 }
 
