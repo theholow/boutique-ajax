@@ -8,7 +8,7 @@ export const oneData = (ids, panier) => {
             let idBear = response.data._id
             let nameBear = response.data.name
             let imgBear = response.data.imageUrl
-            let priceBear = response.data.price
+            let priceBear = response.data.price / 100
             let descritptionBear = response.data.description
             let colors = response.data.colors
 
@@ -53,7 +53,7 @@ export function getCheckCommande(id, colors, quantite, tabHT, totoHT) {
         .then(response => {
             let nameBear = response.data.name
             let priceBear = response.data.price
-            let truePrice = priceBear / 100
+            let truePrice = priceBear/100
             let sousTotal = truePrice * quantite
 
             tabHT.push(sousTotal)
@@ -62,8 +62,8 @@ export function getCheckCommande(id, colors, quantite, tabHT, totoHT) {
             let HT = tabHT.reduce(reducer)
 
             totoHT.push(HT)
-      
-console.log(totoHT)
+
+            console.log(totoHT)
 
             document.querySelector('.HT').innerHTML += totoHT.pop()
             document.querySelector('.table').innerHTML += display.displayCommande(nameBear, colors, quantite, truePrice, sousTotal)
@@ -77,7 +77,7 @@ export function getDataForBasketDisplay(idProduct, quantiteBear, couleur, panier
         .then(response => {
             let nameBear = response.data.name
             let imgBear = response.data.imageUrl
-            let priceBear = Number(response.data.price)
+            let priceBear = Number(response.data.price)/100
 
 
             document.querySelector('.article-container').innerHTML += display.displayCommandeInBasket(idProduct, imgBear, nameBear, couleur, quantiteBear, priceBear)
@@ -114,8 +114,6 @@ function checkPanier(produit, panier) {
 function purchase(objet) {
     localStorage.setItem("panier", JSON.stringify(objet))
 }
-
-
 
 
 //Enlève le produit du panier (bêta)

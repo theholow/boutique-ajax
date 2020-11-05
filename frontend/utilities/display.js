@@ -37,7 +37,7 @@ export function displayCommandeInBasket(id, img, name, color, quantite, price) {
         '<h3 class="product-name">"' + name + '"</h3>' +
         '<h5 class="product-color">"' + color + '"</h5>' +
         '<h4 class="product-price">"' + quantite + '"</h4>' +
-        `<h5 class="product-quantity">"${price}"</h5>` +
+        `<h5 class="product-quantity">${price}</h5>` +
         `<button class="btn btn-danger" data-id="${id + color}">Supprimer</button>` +
         '</div>'
 
@@ -69,7 +69,7 @@ export function createDisplay(array) {
         let id = product._id
         let name = product.name
         let img = product.imageUrl
-        let price = product.price
+        let price = product.price/100
         let descritption = product.description
         document.getElementById('card').innerHTML += createCard(id, name, descritption, price, img)
 
